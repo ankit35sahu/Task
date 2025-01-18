@@ -1,0 +1,37 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class  numberguessing {
+ public static void main(String[] args) {
+         Random random = new Random();
+         int randomNumber = random.nextInt(100);
+
+         Scanner sc = new Scanner(System.in);
+         int guess = 0;
+         int count =0;
+      
+         long startTime = System.currentTimeMillis();
+    while(guess != randomNumber){
+
+        System.out.println("Enter the number ");
+          guess = sc.nextInt();
+        
+        if(guess<randomNumber){
+            System.out.println("You have entered smaller number ");
+        }
+
+        else if(guess>randomNumber){
+        System.out.println("You have entered larger number ");
+        }
+        else{
+        System.out.println("Congratulation! You have  won the game.");
+        }
+    count++; 
+
+    }
+    long endTime = System.currentTimeMillis();
+    double totalTime = (endTime - startTime) / 1000.0;
+    System.out.println("You took " + count + " steps to guess the correct number.");
+    System.out.println("Time taken to win the game: " + totalTime + " seconds.");
+  }
+}
