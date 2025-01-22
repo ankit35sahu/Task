@@ -1,0 +1,44 @@
+ class Car {
+    String colour;
+    String brand;
+    int speed;
+    int price;
+
+    public  Car(String brand,String colour,int speed, int price ){
+       this.price = price;
+       this.speed = speed;
+       this.brand = brand;
+       this.colour = colour;
+    }
+    public void start(){
+System.out.println(brand + " Car is starting.");
+
+    }
+   
+    public void stop(){
+        System.out.println(brand + " Car is stopped.");
+        
+    }
+
+    public void accelerate(int speedUp){
+        speed = speed+speedUp;
+      System.out.println(brand + " is accelerating. Current speed: " +speed + "Km/h ");
+                
+    }
+
+}
+   public class task2Car{
+    public static void main(String[] args) {
+           Car myCar=new Car ("BMW","Black",0,12000);
+
+          myCar.start();
+          myCar.accelerate(30);
+          myCar.accelerate(50);
+          myCar.stop();
+        }
+   }
+
+
+
+    
+    
