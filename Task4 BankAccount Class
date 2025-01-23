@@ -1,0 +1,76 @@
+
+
+public class task3BankAccount {
+   // private fields 
+   private String accountNumber;
+   private String accountHolder;
+   private double balance;
+
+   public task3BankAccount(String accountNumber ,String accountHolder ,double balance){
+      this.accountNumber = accountNumber;
+      this.accountHolder = accountHolder;
+      this.balance = balance;
+      
+    }
+
+    // Getter and Setter for accountNumber
+public String getAccountNumber() {
+        return accountNumber;
+    }
+
+public void setAccountNumber(String accountNumber) {
+    this.accountNumber = accountNumber;
+}
+
+// Getter and Setter for accountHolder
+public String getAccountHolder() {
+    return accountHolder;
+}
+
+public void setAccountHolder(String accountHolder) {
+    this.accountHolder = accountHolder;
+}
+
+// Getter and Setter for balance
+public double getBalance() {
+    return balance;
+}
+
+public void setBalance(double balance) {
+    this.balance = balance;
+}
+
+// Method to deposit money
+
+public void deposit(double amount){
+   
+    if(amount>0){
+        balance = balance +amount;
+        System.out.println("Deposited Amount : "+amount+" Updated Balance : "+balance);
+    }
+    else{
+        System.out.println("Deposit amount must be positive ");
+    }
+
+}
+
+// Method to withdraw money
+
+public void withdraw(double amount) {
+    if (amount > 0 && amount <= balance) {
+        balance -= amount;
+        System.out.println("Withdrew " + amount + ". New balance: " + balance);
+    } else if (amount > balance) {
+        System.out.println("Insufficient balance.");
+    } else {
+        System.out.println("Withdrawal amount must be positive.");
+    }
+}
+public static void main(String[] args) {
+    task3BankAccount account = new task3BankAccount("73873","Ankit",50000);
+    account.deposit(50000);   // Deposit money
+    account.withdraw(38756);  //Withdraw money
+    account.withdraw(70000);  // Try withdrawing an amount larger than the balance
+}
+   
+}
