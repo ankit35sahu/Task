@@ -1,0 +1,90 @@
+    abstract class Shape {
+        // Abstract method to calculate area
+        abstract double calculateArea();
+    }
+    
+    // Circle class extending Shape
+    class Circle extends Shape {
+        private double radius;
+    
+        // Constructor
+        public Circle(double radius) {
+            this.radius = radius;
+        }
+    
+        // Implementing calculateArea() for Circle
+        @Override
+        double calculateArea() {
+            return Math.PI * radius * radius;
+        }
+    }
+    
+    // Rectangle class extending Shape
+    class Rectangle extends Shape {
+        private double length;
+        private double width;
+    
+        // Constructor
+        public Rectangle(double length, double width) {
+            this.length = length;
+            this.width = width;
+        }
+    
+        // Implementing calculateArea() for Rectangle
+        @Override
+        double calculateArea() {
+            return length * width;
+        }
+    }
+
+    // Payment interface
+interface Payment {
+    void pay(double amount);
+    void refund(double amount);
+}
+
+// CreditCardPayment class implementing Payment
+class CreditCardPayment implements Payment {
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using Credit Card.");
+    }
+
+    @Override
+    public void refund(double amount) {
+        System.out.println("Refunded " + amount + " to Credit Card.");
+    }
+}
+
+// PayPalPayment class implementing Payment
+class PayPalPayment implements Payment {
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using PayPal.");
+    }
+
+    @Override
+    public void refund(double amount) {
+        System.out.println("Refunded " + amount + " to PayPal.");
+    }
+}
+    
+    // Main class to test the implementation
+    public class task7 {
+        public static void main(String[] args) {
+            Shape circle = new Circle(5.0);
+            Shape rectangle = new Rectangle(4.0, 6.0);
+    
+            System.out.println("Circle Area: " + circle.calculateArea());
+            System.out.println("Rectangle Area: " + rectangle.calculateArea());
+
+            Payment creditCard = new CreditCardPayment();
+            Payment payPal = new PayPalPayment();
+    
+            creditCard.pay(100.0);
+            creditCard.refund(50.0);
+            payPal.pay(200.0);
+            payPal.refund(75.0);
+            
+        }
+    }
