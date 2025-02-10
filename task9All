@@ -1,0 +1,47 @@
+// Task 1
+public class task9ReverseString {
+    public static String reverse(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
+
+    public static void main(String[] args) {
+        String input = "Hello";
+        System.out.println("Reversed String: " + reverse(input));
+    }
+    
+}
+
+// Task 2
+
+public class TASK9PalindromeChecker {
+    public static boolean isPalindrome(String str) {
+        String reversed = new StringBuilder(str).reverse().toString();
+        return str.equals(reversed);
+    }
+
+    public static void main(String[] args) {
+        String input = "madam";
+        System.out.println("Is Palindrome: " + isPalindrome(input));
+    }
+    
+}
+
+// Task 3
+
+public class task9CharacterCounter {
+    public static int countOccurrences(String str, char ch) {
+        int count = 0;
+        for (char c : str.toCharArray()) {
+            if (c == ch) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        String input = "banana";
+        char characterToCount = 'a';
+        System.out.println("Occurrences of '" + characterToCount + "': " + countOccurrences(input, characterToCount));
+    }
+}
