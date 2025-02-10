@@ -1,0 +1,74 @@
+// Task 1
+
+import java.util.Arrays;
+
+public class task10ReverseArray {
+    public static void reverse(int[] arr) {
+        int left = 0, right = arr.length - 1;
+        while (left < right) {
+            // Swap elements
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5};
+        reverse(array);
+        System.out.println("Reversed Array: " + Arrays.toString(array));
+    }
+}
+
+// Task 2
+
+import java.util.Arrays;
+
+public class task10AnagramChecker {
+    public static boolean areAnagrams(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+        // Convert to char arrays and sort
+        char[] arr1 = str1.toCharArray();
+        char[] arr2 = str2.toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1, arr2);
+    }
+
+    public static void main(String[] args) {
+        String str1 = "listen";
+        String str2 = "silent";
+        System.out.println("Are Anagrams: " + areAnagrams(str1, str2));
+    }
+
+}
+
+// Task 3
+
+public class task10StringManipulation {
+    public static String reverseAndRemoveVowels(String str) {
+        StringBuilder sb = new StringBuilder();
+        
+        // Reverse the string
+        String reversed = new StringBuilder(str).reverse().toString();
+        
+        // Remove vowels
+        for (char ch : reversed.toCharArray()) {
+            if (!"AEIOUaeiou".contains(String.valueOf(ch))) {
+                sb.append(ch);
+            }
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        String input = "hello world";
+        System.out.println("Processed String: " + reverseAndRemoveVowels(input));
+    }
+
+}
+
