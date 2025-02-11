@@ -1,0 +1,76 @@
+// Task 1
+
+import java.util.*;
+
+public class ListExample {
+    public static void main(String[] args) {
+        // Using ArrayList
+        List<String> arrayList = new ArrayList<>();
+        arrayList.add("Apple");
+        arrayList.add("Banana");
+        arrayList.add("Cherry");
+
+        // Using LinkedList
+        List<String> linkedList = new LinkedList<>();
+        linkedList.add("Dog");
+        linkedList.add("Elephant");
+        linkedList.add("Fox");
+
+        // Retrieving elements
+        System.out.println("ArrayList Elements: " + arrayList);
+        System.out.println("LinkedList Elements: " + linkedList);
+
+        // Accessing elements individually
+        System.out.println("First element in ArrayList: " + arrayList.get(0));
+        System.out.println("First element in LinkedList: " + linkedList.get(0));
+    }
+}
+
+// Task 2  
+
+import java.util.*;
+
+public class TreeSetExample {
+    public static void main(String[] args) {
+        TreeSet<Integer> treeSet = new TreeSet<>();
+
+        // Adding elements (TreeSet sorts elements automatically)
+        treeSet.add(40);
+        treeSet.add(10);
+        treeSet.add(30);
+        treeSet.add(20);
+
+        // Insertion order is NOT maintained, but sorted order is
+        System.out.println("Sorted TreeSet: " + treeSet);
+
+        // Retrieving first and last elements
+        System.out.println("First Element: " + treeSet.first());
+        System.out.println("Last Element: " + treeSet.last());
+    }
+}
+
+// Task 3
+
+import java.util.*;
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        // Creating a HashMap with Roll Number as Key and Name as Value
+        HashMap<Integer, String> studentMap = new HashMap<>();
+
+        // Adding student details
+        studentMap.put(101, "Alice");
+        studentMap.put(102, "Bob");
+        studentMap.put(103, "Charlie");
+
+        // Retrieving student details
+        System.out.println("Student Details:");
+        for (Map.Entry<Integer, String> entry : studentMap.entrySet()) {
+            System.out.println("Roll No: " + entry.getKey() + ", Name: " + entry.getValue());
+        }
+
+        // Retrieving a specific student
+        int rollNumber = 102;
+        System.out.println("Student with Roll No " + rollNumber + ": " + studentMap.get(rollNumber));
+    }
+}
