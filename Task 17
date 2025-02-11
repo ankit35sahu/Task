@@ -1,0 +1,75 @@
+// Task 1
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class StackReverseString {
+    public static String reverseString(String str) {
+        Stack<Character> stack = new Stack<>();
+
+        // Push all characters onto the stack
+        for (char ch : str.toCharArray()) {
+            stack.push(ch);
+        }
+
+        // Pop characters from the stack to get reversed string
+        StringBuilder reversed = new StringBuilder();
+        while (!stack.isEmpty()) {
+            reversed.append(stack.pop());
+        }
+
+        return reversed.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+        scanner.close();
+
+        System.out.println("Reversed String: " + reverseString(input));
+    }
+}
+
+// Task 2
+
+import java.util.PriorityQueue;
+
+class Patient implements Comparable<Patient> {
+    String name;
+    int priority; // Higher priority number means more urgent case
+
+    public Patient(String name, int priority) {
+        this.name = name;
+        this.priority = priority;
+    }
+
+    @Override
+    public int compareTo(Patient other) {
+        return Integer.compare(other.priority, this.priority); // Descending order
+    }
+
+    @Override
+    public String toString() {
+        return name + " (Priority: " + priority + ")";
+    }
+}
+
+public class HospitalEmergencyQueue {
+    public static void main(String[] args) {
+        PriorityQueue<Patient> hospitalQueue = new PriorityQueue<>();
+
+        // Adding patients with different priority levels
+        hospitalQueue.add(new Patient("Alice", 2)); // Medium priority
+        hospitalQueue.add(new Patient("Bob", 5));   // Highest priority
+        hospitalQueue.add(new Patient("Charlie", 1)); // Lowest priority
+        hospitalQueue.add(new Patient("David", 4)); // High priority
+
+        System.out.println("Processing Patients in Emergency Order:");
+
+        // Processing patients by priority
+        while (!hospitalQueue.isEmpty()) {
+            System.out.println("Attending: " + hospitalQueue.poll());
+        }
+    }
+}
