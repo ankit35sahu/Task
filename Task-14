@@ -1,0 +1,96 @@
+// task 1
+
+import java.io.*;
+
+public class FileReaderUtility {
+    public static void readFile(String fileName) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: File not found.");
+        } catch (IOException e) {
+            System.out.println("Error reading the file.");
+        }
+    }
+
+    public static void main(String[] args) {
+        String fileName = "example.txt"; // Change to your file name
+        readFile(fileName);
+    }
+}
+
+// Task 2
+
+import java.io.*;
+
+// Serializable Student Class
+class Student implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String name;
+    private int marks;
+
+    public Student(String name, int marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+
+    public void display() {
+        System.out.println("Name: " + name + ", Marks: " + marks);
+    }
+}
+public class StudentSerialization {
+    public static void main(String[] args) {
+        Student student = new Student("Alice", 90);
+        String fileName = "student.ser";
+
+        // Serialize Object
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            oos.writeObject(student);
+            System.out.println("Student object serialized successfully.");
+        } catch (IOException e) {
+            System.out.println("Error during serialization: " + e.getMessage());
+        }
+
+        // Deserialize Object
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+            Student deserializedStudent = (Student) ois.readObject();
+            System.out.println("Deserialized Student:");
+            deserializedStudent.display();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error during deserialization: " + e.getMessage());
+        }
+    }
+}
+
+
+// Task 3
+
+import java.io.*;
+
+public class WordCount {
+    public static int countWords(String fileName) {
+        int wordCount = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] words = line.split("\\s+"); // Splitting on whitespace
+                wordCount += words.length;
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: File not found.");
+        } catch (IOException e) {
+            System.out.println("Error reading the file.");
+        }
+        return wordCount;
+    }
+
+    public static void main(String[] args) {
+        String fileName = "example.txt"; // Change to your file name
+        int count = countWords(fileName);
+        System.out.println("Total Words: " + count);
+    }
+}
+
