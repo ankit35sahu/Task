@@ -1,0 +1,108 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+// 1️ Singleton Logger Class (Thread-Safe)
+class Logger {
+    private static Logger instance;
+
+    private Logger() {} 
+
+    public static synchronized Logger getInstance() {
+        if (instance == null) {
+            instance = new Logger();
+        }
+        return instance;
+    }
+
+    public void log(String message) {
+        String timestamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
+        System.out.println("[" + timestamp + "] " + message);
+    }
+}
+
+// 2️ Singleton DatabaseConnection Class
+class DatabaseConnection {
+    private static DatabaseConnection instance;
+
+    private DatabaseConnection() {}
+
+    public static synchronized DatabaseConnection getInstance() {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        }
+        return instance;
+    }
+
+    public void connect() {
+        System.out.println("Connected to the database.");
+    }
+
+    public void disconnect() {
+        System.out.println("Disconnected from the database.");
+    }
+}
+
+// 3️ Enum for UserRole
+enum UserRole {
+    ADMIN, USER, GUEST;
+
+    public void printAccessLevel() {
+        switch (this) {
+            case ADMIN -> System.out.println("Access Level: Full Access");
+            case USER -> System.out.println("Access Level: Limited Access");
+            case GUEST -> System.out.println("Access Level: Read-Only Access");
+        }
+    }
+}
+
+// 4 Enum for Days of the Week
+enum Day {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+
+    public boolean isWeekend() {
+        return this == SATURDAY || this == SUNDAY;
+    }
+}
+
+// 5️ Enum for StatusCode
+enum StatusCode {
+    SUCCESS("Operation completed successfully"),
+    ERROR("An error occurred"),
+    PENDING("Operation is pending");
+
+    private final String message;
+
+    StatusCode(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
+
+// 6️ Main Class to Test Everything
+public class Main {
+    public static void main(String[] args) {
+        // Test Logger Singleton
+        Logger logger = Logger.getInstance();
+        logger.log("Application started.");
+
+        // Test DatabaseConnection Singleton
+        DatabaseConnection db = DatabaseConnection.getInstance();
+        db.connect();
+        db.disconnect();
+
+        // Test UserRole Enum
+        UserRole role = UserRole.ADMIN;
+        role.printAccessLevel();
+
+        // Test Day Enum
+        Day today = Day.SATURDAY;
+        System.out.println(today + " is " + (today.isWeekend() ? "a Weekend" : "a Weekday"));
+
+        // Test StatusCode Enum
+        StatusCode status = StatusCode.SUCCESS;
+        System.out.println("Status: " + status + " - " + status.getMessage());
+    }
+}
